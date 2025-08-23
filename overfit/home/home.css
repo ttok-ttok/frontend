@@ -56,7 +56,7 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 중앙 정렬 */
+  align-items: center;
   gap: clamp(10px, 10vw, 52px);
   width: 100%;
   min-height: calc(100vh - 150px);
