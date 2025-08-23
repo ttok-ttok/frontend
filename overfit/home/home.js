@@ -2,6 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const condBtns = document.querySelectorAll(".cond-btn");
   const micBtn = document.querySelector(".mic-btn");
   const aiBtn = document.querySelector(".ai-btn");
+  const questionText = document.querySelector(".question");
+
+  // 질문 텍스트 설정
+  const questionString = [
+    "오늘의 컨디션은 어떠신가요?",
+    "오늘 식사는 맛있게 하셨어요?",
+    "어제 잠은 잘 주무셨어요?",
+    "오늘 몸은 어떠세요?",
+    "오늘 움직이는데 불편함은 없으셨나요?",
+  ];
+  const randomIndex = Math.floor(Math.random() * questionString.length);
+  questionText.textContent = questionString[randomIndex];
 
   // 컨디션 버튼 선택
   condBtns.forEach((btn) => {
