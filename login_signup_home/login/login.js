@@ -20,15 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // 📌 GET 요청 (쿼리 파라미터로 전달)
-      const res = await fetch(
-        `https://www.ttokttok.n-e.kr/auth/login?userId=${encodeURIComponent(
-          username
-        )}&password=${encodeURIComponent(password)}`,
-        {
-          method: "GET",
-        }
-      );
+      // 📌 POST 요청 (서버와 연동)
+      const res = await fetch("https://www.ttokttok.n-e.kr/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: userId, // 서버에서 요구하는 key 확인 필요
+          password: userPw,
+        }),
+      });
 
       if (!res.ok) {
         const errorText = await res.text();
@@ -47,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "../home/home.html"; // 홈으로 이동
     } catch (err) {
       console.error("❌ 로그인 실패:", err);
-      alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요.");
+      alert("로그인에 실패했습니다. 다시 시도해주세요.");
     }
   });
 });
