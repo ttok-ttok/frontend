@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".slide"); // 각 슬라이드
-  const slidesContainer = document.getElementById("slides"); // 슬라이드 전체 컨테이너
-  const nextBtns = document.querySelectorAll(".btn-next"); // 각 버튼
+  const slidesContainer = document.getElementById("slides"); // 슬라이드 컨테이너
+  const nextBtns = document.querySelectorAll(".btn-next"); // 버튼들
   const dots = document.querySelectorAll(".dot"); // 인디케이터
 
   let current = 0;
