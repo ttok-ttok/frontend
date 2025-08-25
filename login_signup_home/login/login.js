@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: userId, // 서버에서 요구하는 key 확인 필요
+          username: userId, // 서버에서 요구하는 key (username/userId 확인 필요)
           password: userPw,
         }),
       });
@@ -40,9 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
       console.log("✅ 로그인 성공:", data);
 
-      // 📌 토큰 저장 (서버가 토큰을 내려준 경우)
-      if (data.token) {
-        localStorage.setItem("authToken", data.token);
+      // 📌 토큰 저장
+      if (data.accessToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+        console.log("📦 accessToken 저장 완료:", data.accessToken);
+      }
+      if (data.refreshToken) {
+        localStorage.setItem("refreshToken", data.refreshToken);
+        console.log("📦 refreshToken 저장 완료:", data.refreshToken);
+      }
+      if (data.tokenType) {
+        localStorage.setItem("tokenType", data.tokenType);
+      }
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
       }
 
       alert("로그인 성공! 🎉");
