@@ -1,13 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const calendar = document.getElementById('calendar');
-  const headerText = document.getElementById('calendar-header-text');
-  const prevBtn = document.getElementById('prev-month');
-  const nextBtn = document.getElementById('next-month');
+document.addEventListener("DOMContentLoaded", () => {
+  const calendar = document.getElementById("calendar");
+  const headerText = document.getElementById("calendar-header-text");
+  const prevBtn = document.getElementById("prev-month");
+  const nextBtn = document.getElementById("next-month");
 
   function formatDate(year, month, day) {
     const y = year;
-    const m = String(month + 1).padStart(2, '0'); // month는 0부터 시작
-    const d = String(day).padStart(2, '0');
+    const m = String(month + 1).padStart(2, "0"); // month는 0부터 시작
+    const d = String(day).padStart(2, "0");
     return `${y}-${m}-${d}`;
   }
 
@@ -34,19 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let monthlyData = {};
 
   async function fetchMonthData(year, month) {
-    const ym = `${year}-${String(month + 1).padStart(2, '0')}`;
+    const ym = `${year}-${String(month + 1).padStart(2, "0")}`;
     try {
       const res = await fetch(`/health/month?month=${ym}`);
       monthlyData = await res.json();
       // 예: { "2025-08-24": "bad", "2025-08-25": "neutral" ... }
     } catch (e) {
-      console.error('월별 데이터 불러오기 실패', e);
+      console.error("월별 데이터 불러오기 실패", e);
       monthlyData = {};
     }
   }
 
   async function renderCalendar(date) {
-    calendar.innerHTML = '';
+    calendar.innerHTML = "";
 
     const year = date.getFullYear();
     const month = date.getMonth(); // 0 = 1월
@@ -61,31 +61,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 빈칸 채우기
     for (let i = 0; i < firstDay; i++) {
-      const empty = document.createElement('div');
+      const empty = document.createElement("div");
       calendar.appendChild(empty);
     }
 
     // 날짜 넣기
     for (let d = 1; d <= lastDate; d++) {
-      const dayEl = document.createElement('div');
-      dayEl.classList.add('day');
+      const dayEl = document.createElement("div");
+      dayEl.classList.add("day");
 
-      const numEl = document.createElement('div');
-      numEl.classList.add('day-number');
+      const numEl = document.createElement("div");
+      numEl.classList.add("day-number");
       numEl.textContent = d;
 
-      const circleEl = document.createElement('div');
-      circleEl.classList.add('circle');
+      const circleEl = document.createElement("div");
+      circleEl.classList.add("circle");
 
       const thisDate = new Date(year, month, d);
       const dateKey = formatDate(year, month, d);
 
       if (thisDate.toDateString() === today.toDateString()) {
-        dayEl.classList.add('today');
+        dayEl.classList.add("today");
       } else if (thisDate < today) {
-        dayEl.classList.add('past');
+        dayEl.classList.add("past");
       } else {
-        dayEl.classList.add('future');
+        dayEl.classList.add("future");
       }
 
       // 월별 데이터에서 기분 가져오기
@@ -95,14 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // 원 클릭 이벤트 (선택 → 상세 이동)
-      circleEl.addEventListener('click', () => {
-        if (circleEl.classList.contains('selected')) {
+      circleEl.addEventListener("click", () => {
+        if (circleEl.classList.contains("selected")) {
           window.location.href = `calendar_detail.html?date=${dateKey}`;
         } else {
-          document.querySelectorAll('.circle.selected').forEach((el) => {
-            el.classList.remove('selected');
+          document.querySelectorAll(".circle.selected").forEach((el) => {
+            el.classList.remove("selected");
           });
-          circleEl.classList.add('selected');
+          circleEl.classList.add("selected");
         }
       });
 
@@ -117,19 +117,43 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCalendar(current);
 
   // 이전 달
-  prevBtn.addEventListener('click', () => {
+  prevBtn.addEventListener("click", () => {
     current.setMonth(current.getMonth() - 1);
     renderCalendar(current);
   });
 
   // 다음 달
-  nextBtn.addEventListener('click', () => {
+  nextBtn.addEventListener("click", () => {
     current.setMonth(current.getMonth() + 1);
     renderCalendar(current);
   });
 });
 
-const profileBtn = document.getElementById('profile-btn');
-profileBtn.addEventListener('click', () => {
-  window.location.href = '/mypage/mypage.html';
+const profileBtn = document.getElementById("profile-btn");
+profileBtn.addEventListener("click", () => {
+  window.location.href = "/mypage/mypage.html";
 });
+
+function alarm_func() {
+  try {
+    // 로컬스토리지에서 user 객체 꺼내기
+    const userData = JSON.parse(localStorage.getItem("user"));
+
+    if (!userData || !userData.type) {
+      alert("사용자 정보가 없습니다. 다시 로그인해주세요.");
+      return;
+    }
+
+    // type 값에 따라 페이지 이동
+    if (userData.type === "GUARDIAN") {
+      window.location.href = "../../alarm/alarm_g/alarm_g.html";
+    } else if (userData.type === "ELDER") {
+      window.location.href = "../../alarm/alarm_s/alarm_s.html";
+    } else {
+      alert("알 수 없는 사용자 유형입니다.");
+    }
+  } catch (err) {
+    console.error("❌ alarm_func 실행 오류:", err);
+    alert("사용자 정보를 불러오는데 실패했습니다.");
+  }
+}
