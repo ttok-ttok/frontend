@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       username: localStorage.getItem("signupId"),
       password: localStorage.getItem("signupPw"),
       medications: localStorage.getItem("takeMedicine") === "true",
-      userType: localStorage.getItem("selectedOption"), // ELDER | GAURDIAN
+      type: localStorage.getItem("selectedOption"), // ELDER | GAURDIAN
     };
 
     console.log("서버 전송 데이터:", signupData);
