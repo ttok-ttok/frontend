@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (userId === "test" && userPw === "1234") {
       alert("로그인 성공! 🎉");
-      window.location.href = "main.html"; // 메인 페이지로 이동 가정
+      window.location.href = "../home/home.html"; // 메인 페이지로 이동 가정
     } else {
       alert("아이디 또는 비밀번호가 올바르지 않습니다.");
     }
