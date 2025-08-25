@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 회원 유형에 따라 다음 페이지 이동
       if (userType === "ELDER") {
         window.location.href = "../signup_s/signup_s.html";
-      } else if (userType === "GAURDIAN") {
+      } else if (userType === "GUARDIAN") {
         window.location.href = "../signup_g/signup_g.html";
       }
     }
