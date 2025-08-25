@@ -9,15 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
       name: localStorage.getItem("signupName"),
       username: localStorage.getItem("signupId"),
       password: localStorage.getItem("signupPw"),
-      takeMedicine: localStorage.getItem("takeMedicine") === "true",
-      userType: localStorage.getItem("selectedOption"), // senior | guardian
+      medications: localStorage.getItem("takeMedicine") === "true",
+      userType: localStorage.getItem("selectedOption"), // ELDER | GAURDIAN
     };
 
     console.log("서버 전송 데이터:", signupData);
 
     try {
       // 📌 TODO: 백엔드 엔드포인트 연결 (회원가입 저장용)
-      const res = await fetch("http://43.201.19.8:8080/auth/signup", {
+      const res = await fetch("https://www.ttokttok.n-e.kr/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signupData),
