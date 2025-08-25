@@ -7,30 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const selectedOption = localStorage.getItem("selectedOption"); // senior | guardian
 
-  function alarm_func() {
-    try {
-      // 로컬스토리지에서 user 객체 꺼내기
-      const userData = JSON.parse(localStorage.getItem("user"));
-
-      if (!userData || !userData.type) {
-        alert("사용자 정보가 없습니다. 다시 로그인해주세요.");
-        return;
-      }
-
-      // type 값에 따라 페이지 이동
-      if (userData.type === "GUARDIAN") {
-        window.location.href = "../alarm/alarm_g/alarm_g.html";
-      } else if (userData.type === "ELDER") {
-        window.location.href = "../alarm/alarm_s/alarm_s.html";
-      } else {
-        alert("알 수 없는 사용자 유형입니다.");
-      }
-    } catch (err) {
-      console.error("❌ alarm_func 실행 오류:", err);
-      alert("사용자 정보를 불러오는데 실패했습니다.");
-    }
-  }
-
   // guardian / senior 모드 분기
   if (selectedOption === "guardian") {
     questionText.textContent = "안녕하세요, 무엇을 도와드릴까요?";
@@ -128,3 +104,27 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../chat/chat.html";
   });
 });
+
+function alarm_func() {
+  try {
+    // 로컬스토리지에서 user 객체 꺼내기
+    const userData = JSON.parse(localStorage.getItem("user"));
+
+    if (!userData || !userData.type) {
+      alert("사용자 정보가 없습니다. 다시 로그인해주세요.");
+      return;
+    }
+
+    // type 값에 따라 페이지 이동
+    if (userData.type === "GUARDIAN") {
+      window.location.href = "../alarm/alarm_g/alarm_g.html";
+    } else if (userData.type === "ELDER") {
+      window.location.href = "../alarm/alarm_s/alarm_s.html";
+    } else {
+      alert("알 수 없는 사용자 유형입니다.");
+    }
+  } catch (err) {
+    console.error("❌ alarm_func 실행 오류:", err);
+    alert("사용자 정보를 불러오는데 실패했습니다.");
+  }
+}
