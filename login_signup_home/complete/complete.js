@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // 성공 시 로컬스토리지 비우기
       localStorage.clear();
 
-      // 홈으로 이동
-      window.location.href = "../home/home.html";
+      // 로그인으로 이동
+      window.location.href = "../login/login.html";
     } catch (err) {
       console.error("❌ 회원가입 완료 처리 실패:", err);
       alert("회원가입 처리 중 문제가 발생했습니다. 다시 시도해주세요.");
