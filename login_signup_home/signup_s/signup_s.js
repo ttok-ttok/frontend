@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const selected = form.querySelector("input[type='radio']:checked");
     if (selected) {
       console.log("선택된 값:", selected.value);
+
+      // 🔥 약 복용 여부 로컬스토리지 저장 (true / false)
+      const takeMedicine = selected.value === "yes";
+      localStorage.setItem("takeMedicine", takeMedicine);
+
       window.location.href = "../signup_s2/signup_s2.html";
     }
   });
