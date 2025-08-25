@@ -87,10 +87,28 @@ document.addEventListener('DOMContentLoaded', async () => {
                   data.conditionScore || 0,
                   data.energyScore || 0,
                 ],
-                backgroundColor: 'rgba(255, 205, 86, 0.2)', // FFF073 반투명
-                borderColor: '#FFD43B', // 좀 더 선명한 노랑
-                pointBackgroundColor: '#FFD43B',
+                backgroundColor: 'rgba(252, 197, 123, 0.3)', // 주황 반투명
+                borderColor: 'orange',
+                borderWidth: 3,
+                pointBackgroundColor: 'orange',
+                pointBorderColor: 'orange',
+                pointRadius: 4,
+              },
+              {
+                label: '어제',
+                data: [
+                  data.prevSleepScore || 0,
+                  data.prevMoodScore || 0,
+                  data.prevMealScore || 0,
+                  data.prevConditionScore || 0,
+                  data.prevEnergyScore || 0,
+                ],
+                backgroundColor: 'rgba(200, 200, 0, 0.15)', // 연노랑 반투명
+                borderColor: '#C0CA33', // 연두색
                 borderWidth: 2,
+                pointBackgroundColor: '#C0CA33',
+                pointBorderColor: '#C0CA33',
+                pointRadius: 3,
               },
             ],
           },
@@ -104,13 +122,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             scales: {
               r: {
                 beginAtZero: true,
-                max: 5,
+                max: 3,
                 ticks: {
-                  stepSize: 1,
-                  color: '#757575', // 숫자 색상
+                  display: false, // ✅ 숫자(1,2,3) 숨김
                 },
                 grid: {
-                  color: '#e0e0e0', // 축선 색상
+                  display: false,
                 },
                 pointLabels: {
                   color: '#757575', // 라벨 색상 (숙면, 기분…)
