@@ -117,9 +117,9 @@ function alarm_func() {
 
     // type 값에 따라 페이지 이동
     if (userData.type === "GUARDIAN") {
-      window.location.href = "../alarm/alarm_g/alarm_g.html";
+      window.location.href = "/alarm/alarm_g/alarm_g.html";
     } else if (userData.type === "ELDER") {
-      window.location.href = "../alarm/alarm_s/alarm_s.html";
+      window.location.href = "/alarm/alarm_s/alarm_s.html";
     } else {
       alert("알 수 없는 사용자 유형입니다.");
     }
