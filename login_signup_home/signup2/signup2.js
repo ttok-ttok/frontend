@@ -138,10 +138,22 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!nextBtn.disabled) {
+      // ✅ 로컬스토리지에 저장
+      localStorage.setItem("signupName", nameInput.value.trim());
+      localStorage.setItem("signupId", idInput.value.trim());
+      localStorage.setItem("signupPw", pwInput.value.trim());
+
+      console.log("✅ 회원가입 정보 저장 완료:", {
+        name: nameInput.value.trim(),
+        id: idInput.value.trim(),
+        pw: pwInput.value.trim(),
+      });
+
+      // 회원 유형에 따라 다음 페이지 이동
       if (userType === "senior") {
-        window.location.href = "../signup_s/signup_s.html"; // 시니어 회원가입 페이지로 이동
+        window.location.href = "../signup_s/signup_s.html";
       } else if (userType === "guardian") {
-        window.location.href = "../signup_g/signup_g.html"; // 보호자 회원가입 페이지로 이동
+        window.location.href = "../signup_g/signup_g.html";
       }
     }
   });

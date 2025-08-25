@@ -35,14 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // ===== 폼 제출 =====
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const selected = Array.from(checkboxes)
       .filter((cb) => cb.checked)
       .map((cb) => cb.value);
+
     if (selected.length) {
-      console.log("선택된 항목:", selected);
-      window.location.href = "../need_alarm/need_alarm.html"; // 다음 단계로 이동
+      // ✅ 로컬스토리지에 저장
+      localStorage.setItem("healthConditions", JSON.stringify(selected));
+      console.log("✅ 저장된 건강상태:", selected);
+
+      // 다음 단계로 이동
+      window.location.href = "../need_alarm/need_alarm.html";
     }
   });
 });
