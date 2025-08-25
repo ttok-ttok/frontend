@@ -14,7 +14,7 @@
       <!-- 상단 바: 홈, 알림, 타이틀 -->
       <header class="topbar" role="banner" aria-label="상단 바">
         <div class="topbar-left">
-          <button class="icon-btn" aria-label="홈">
+          <button class="icon-btn" aria-label="홈" onclick="window.location.href='../login_signup_home/home/home.html'">
             <!-- 홈 아이콘 -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@
             </svg>
           </button>
 
-          <button class="icon-btn" aria-label="알림">
+          <button class="icon-btn" aria-label="알림" onclick="alarm_func()">
             <!-- 알림 아이콘 -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +221,7 @@
 <div class="section-sep"></div>
 
     <section class="logout-section" aria-label="로그아웃">
-  <button class="logout-btn" type="button">로그아웃</button>
+  <button class="logout-btn" type="button" onclick="logout_func()">로그아웃</button>
 </section>
 </div> <!-- .app 닫기 -->
 
